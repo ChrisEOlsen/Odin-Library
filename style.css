@@ -4,13 +4,13 @@
   border: 1px solid black;
   outline: none;
   box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
   height: 100vh;
   background-color: #f5f5f4;
-  font-family: "Nunito Sans", sans-serif;
-  font-family: "Roboto", sans-serif;
   display: grid;
   grid-template-rows: 1fr 0.5fr 4fr 0.5fr;
 }
@@ -50,30 +50,49 @@ body {
 .library-area > * {
   height: 400px;
 }
-.book {
+.book,
+.new-book-prompt {
   display: grid;
   grid-template-rows: 3fr 2fr 1fr;
 }
 .title,
 .author,
-.read-button {
+.read-button,
+.input-title,
+.input-author {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 10px 0 10px;
+  overflow-wrap: anywhere;
 }
-.title {
+.title,
+.input-title {
   font-size: 36px;
 }
-.author {
+.author,
+.input-author {
   font-size: 22px;
   font-style: italic;
 }
-.read-button button {
+.read-button button,
+.input-buttons button {
   padding: 8px;
   border: 2px solid black;
   border-radius: 10px;
   background-color: #cffafe;
+}
+.input-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.input-buttons button:nth-child(1):hover {
+  background-color: #dc2626;
+}
+.input-buttons button:nth-child(2):hover {
+  background-color: #34d399;
 }
 
 .footer {
