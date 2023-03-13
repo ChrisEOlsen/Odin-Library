@@ -71,14 +71,18 @@ body {
   padding: 0 10px 0 10px;
   overflow-wrap: anywhere;
 }
-.title,
+.title {
+  resize: none;
+}
 .input-title {
   font-size: 36px;
+  resize: none;
 }
 .author,
 .input-author {
   font-size: 22px;
   font-style: italic;
+  resize: none;
 }
 .read-button button,
 .input-buttons button {
@@ -93,10 +97,12 @@ body {
   align-items: center;
   gap: 50px;
 }
-.input-buttons button:nth-child(1):hover {
+.input-buttons button:nth-child(1):hover,
+.input-buttons button:nth-child(1):focus {
   background-color: #dc2626;
 }
-.input-buttons button:nth-child(2):hover {
+.input-buttons button:nth-child(2):hover,
+.input-buttons button:nth-child(2):focus {
   background-color: #34d399;
 }
 

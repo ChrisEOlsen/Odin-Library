@@ -26,17 +26,22 @@ function displaySavedBooks(arr) {
   for (let i = 0; i < arr.length; i++) {
     const newBook = document.createElement("book")
     newBook.classList.add("book")
+    newBook.setAttribute("id", i)
     newBook.innerHTML =
       `<div class="title">` +
-      arr[i].title +
+      arr[i].title.replace(/<|>/g, " ") + //Safeguard html input
       `</div>
       <div class="author">` +
-      arr[i].author +
+      arr[i].author.replace(/<|>/g, " ") +
       `</div>
       <div class="read-button">
         <button>Read</button>
       </div>`
     libraryArea.prepend(newBook)
+    const title = document.querySelector(".title")
+    title.textContent.length >= 30 //Change font size based on title length
+      ? (title.style.cssText = "font-size: 30px")
+      : (title.style.cssText = "font-size: 36px")
   }
 }
 //Create array content
@@ -71,7 +76,7 @@ addBook.addEventListener("click", () => {
       addBookActive = false
       const title = document.querySelector(".input-title")
       const author = document.querySelector(".input-author")
-      const newBook = new Book(title.value, author.value, myLibrary.length + 1)
+      const newBook = new Book(title.value, author.value, myLibrary.length)
       saveToLibrary(newBook)
       function removeAllChildNodes(parent) {
         while (parent.firstChild) {
