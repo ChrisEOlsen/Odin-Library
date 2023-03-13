@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  border: 1px solid black;
   outline: none;
   box-sizing: border-box;
   font-family: "Nunito Sans", sans-serif;
@@ -13,6 +12,13 @@ body {
   background-color: #f5f5f4;
   display: grid;
   grid-template-rows: 1fr 0.5fr 4fr 0.5fr;
+}
+
+/*Items with border*/
+.add-button-container,
+.book,
+.new-book-prompt {
+  border: 2px solid black;
 }
 
 .header {
@@ -31,13 +37,14 @@ body {
   justify-content: right;
   align-items: center;
 }
-.add-button-container .add-book {
+.add-book {
   margin-right: 50px;
   outline: none;
   border-radius: 20px;
   background-color: #cffafe;
   padding: 10px 14px 10px 14px;
   font-size: 18px;
+  border: 2px solid black;
 }
 
 .library-area {
@@ -55,6 +62,7 @@ body {
 .library-area > * {
   height: 400px;
 }
+
 .book,
 .new-book-prompt {
   display: grid;
@@ -69,6 +77,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0 10px 0 10px;
+  text-align: center;
   overflow-wrap: anywhere;
 }
 .title {
@@ -102,7 +111,10 @@ body {
   background-color: #dc2626;
 }
 .input-buttons button:nth-child(2):hover,
-.input-buttons button:nth-child(2):focus {
+.input-buttons button:nth-child(2):focus,
+.read-button button:hover,
+.read-button button:focus,
+.add-book:hover {
   background-color: #34d399;
 }
 
