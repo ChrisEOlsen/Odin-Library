@@ -1,9 +1,10 @@
 let myLibrary = []
 
-function Book(title, author, id) {
+function Book(title, author, id, status) {
   this.title = title
   this.author = author
   this.id = id
+  this.status = "unread"
 }
 
 function saveToLibrary(book) {
@@ -11,11 +12,26 @@ function saveToLibrary(book) {
 }
 
 function saveDemoBooks() {
-  const book1 = new Book("The Hobbit", "J.R.R Tolkien", myLibrary.length)
+  const book1 = new Book(
+    "The Hobbit",
+    "J.R.R Tolkien",
+    myLibrary.length,
+    "unread"
+  )
   saveToLibrary(book1)
-  const book2 = new Book("Animal Farm", "George Orwell", myLibrary.length)
+  const book2 = new Book(
+    "Animal Farm",
+    "George Orwell",
+    myLibrary.length,
+    "unread"
+  )
   saveToLibrary(book2)
-  const book3 = new Book("The Holy Bible", "Jesus", myLibrary.length)
+  const book3 = new Book(
+    "The Saint James Holy Bible",
+    "Jesus",
+    myLibrary.length,
+    "unread"
+  )
   saveToLibrary(book3)
 }
 
@@ -35,14 +51,35 @@ function displaySavedBooks(arr) {
       arr[i].author.replace(/<|>/g, " ") +
       `</div>
       <div class="read-button">
-        <button>Read</button>
+        <button class="` +
+      arr[i].status +
+      `">` +
+      arr[i].status +
+      `</button>
       </div>`
     libraryArea.prepend(newBook)
-    const title = document.querySelector(".title")
-    title.textContent.length >= 30 //Change font size based on title length
+    const title = document.querySelector(".title") //Change font size based on title length
+    title.textContent.length >= 30
       ? (title.style.cssText = "font-size: 30px")
       : (title.style.cssText = "font-size: 36px")
   }
+  //read and unread button declaration
+  const readButton = document.querySelectorAll(".read-button button")
+  readButton.forEach(r => {
+    r.addEventListener("click", () => {
+      if (r.classList == "unread") {
+        r.classList.remove("unread")
+        r.classList.add("read")
+        r.textContent = "read"
+        myLibrary[r.parentElement.parentElement.id].status = "read"
+      } else {
+        r.classList.remove("read")
+        r.classList.add("unread")
+        r.textContent = "unread"
+        myLibrary[r.parentElement.parentElement.id].status = "unread"
+      }
+    })
+  })
 }
 //Create array content
 saveDemoBooks()
@@ -76,6 +113,7 @@ addBook.addEventListener("click", () => {
       addBookActive = false
       const title = document.querySelector(".input-title")
       const author = document.querySelector(".input-author")
+      if (title.value == "" || author.value == "") return
       const newBook = new Book(title.value, author.value, myLibrary.length)
       saveToLibrary(newBook)
       function removeAllChildNodes(parent) {
@@ -85,7 +123,6 @@ addBook.addEventListener("click", () => {
       }
       removeAllChildNodes(libraryArea)
       displaySavedBooks(myLibrary)
-      console.log(myLibrary)
     })
   }
 })
