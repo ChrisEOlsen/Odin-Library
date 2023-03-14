@@ -43,6 +43,7 @@ function removeAllChildNodes(parent) {
 
 const libraryArea = document.querySelector(".library-area")
 const addBook = document.querySelector(".add-book")
+let addBookActive = false
 
 function displaySavedBooks(arr) {
   for (let i = 0; i < arr.length; i++) {
@@ -78,14 +79,20 @@ function displaySavedBooks(arr) {
     newBook.addEventListener("mouseleave", () => {
       delButton.style.display = "none"
     })
+    delButton.addEventListener("mouseenter", () => {
+      delButton.style.color = "red"
+    })
+    delButton.addEventListener("mouseleave", () => {
+      delButton.style.color = "black"
+    })
     //delete button function (removes book)
     delButton.addEventListener("click", () => {
+      if (addBookActive) return
       myLibrary.splice(delButton.parentElement.id, 1)
       removeAllChildNodes(libraryArea)
       displaySavedBooks(myLibrary)
     })
   }
-
   //read and unread button declaration
   const readButton = document.querySelectorAll(".read-button button")
   readButton.forEach(r => {
@@ -108,8 +115,6 @@ function displaySavedBooks(arr) {
 saveDemoBooks()
 //Load all demo books
 displaySavedBooks(myLibrary)
-
-let addBookActive = false
 
 addBook.addEventListener("click", () => {
   if (!addBookActive) {
