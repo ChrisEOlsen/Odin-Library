@@ -35,6 +35,12 @@ function saveDemoBooks() {
   saveToLibrary(book3)
 }
 
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild)
+  }
+}
+
 const libraryArea = document.querySelector(".library-area")
 const addBook = document.querySelector(".add-book")
 
@@ -56,13 +62,30 @@ function displaySavedBooks(arr) {
       `">` +
       arr[i].status +
       `</button>
-      </div>`
+      </div>
+      <button class='delete'>X</button>`
     libraryArea.prepend(newBook)
-    const title = document.querySelector(".title") //Change font size based on title length
+    //Change font size based on title length
+    const title = document.querySelector(".title")
     title.textContent.length >= 30
       ? (title.style.cssText = "font-size: 30px")
       : (title.style.cssText = "font-size: 36px")
+    //mouseover event for delete button
+    const delButton = document.querySelector(".delete")
+    newBook.addEventListener("mouseenter", () => {
+      delButton.style.display = "flex"
+    })
+    newBook.addEventListener("mouseleave", () => {
+      delButton.style.display = "none"
+    })
+    //delete button function (removes book)
+    delButton.addEventListener("click", () => {
+      myLibrary.splice(delButton.parentElement.id, 1)
+      removeAllChildNodes(libraryArea)
+      displaySavedBooks(myLibrary)
+    })
   }
+
   //read and unread button declaration
   const readButton = document.querySelectorAll(".read-button button")
   readButton.forEach(r => {
@@ -116,11 +139,6 @@ addBook.addEventListener("click", () => {
       if (title.value == "" || author.value == "") return
       const newBook = new Book(title.value, author.value, myLibrary.length)
       saveToLibrary(newBook)
-      function removeAllChildNodes(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild)
-        }
-      }
       removeAllChildNodes(libraryArea)
       displaySavedBooks(myLibrary)
     })
