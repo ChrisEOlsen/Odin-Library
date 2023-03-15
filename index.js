@@ -16,21 +16,21 @@ function saveDemoBooks() {
     "The Hobbit",
     "J.R.R Tolkien",
     myLibrary.length,
-    "unread"
+    "read"
   )
   saveToLibrary(book1)
   const book2 = new Book(
     "Animal Farm",
     "George Orwell",
     myLibrary.length,
-    "unread"
+    "read"
   )
   saveToLibrary(book2)
   const book3 = new Book(
     "The Saint James Holy Bible",
     "Jesus",
     myLibrary.length,
-    "unread"
+    "read"
   )
   saveToLibrary(book3)
 }
@@ -123,7 +123,7 @@ addBook.addEventListener("click", () => {
     newBookPrompt.classList.add("new-book-prompt")
     newBookPrompt.innerHTML = `
       <textarea class="input-title" cols="30" rows="10" placeholder="Title"></textarea>
-      <textarea class="input-author" cols="30" rows="10" placeholder="Author"></textarea>
+      <textarea class="input-author" cols="30" rows="10" placeholder="By: Author"></textarea>
       <div class="input-buttons">
         <button class="cancel">Cancel</button>
         <button class="confirm">Confirm</button>

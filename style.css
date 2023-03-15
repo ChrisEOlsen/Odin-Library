@@ -5,6 +5,7 @@
   box-sizing: border-box;
   font-family: "Nunito Sans", sans-serif;
   font-family: "Roboto", sans-serif;
+  color: black;
 }
 
 body {
@@ -67,7 +68,37 @@ body {
 .new-book-prompt {
   display: grid;
   grid-template-rows: 3fr 2fr 1fr;
+  position: relative;
 }
+.delete {
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  font-size: 24px;
+  display: none;
+  background-color: #f5f5f4;
+  border: none;
+  opacity: 50%;
+}
+.delete-book-prompt {
+  position: absolute;
+  top: 4px;
+  left: 30px;
+}
+.delete-book-prompt button {
+  font-size: 24px;
+  border: none;
+  background-color: #f5f5f4;
+}
+
+/*Interactives*/
+.delete,
+.add-book,
+.read,
+.unread {
+  cursor: pointer;
+}
+
 .title,
 .author,
 .read-button,
@@ -79,6 +110,7 @@ body {
   padding: 0 10px 0 10px;
   text-align: center;
   overflow-wrap: anywhere;
+  background-color: #f5f5f4;
 }
 .title {
   resize: none;
@@ -93,7 +125,7 @@ body {
   font-style: italic;
   resize: none;
 }
-.read-button button,
+
 .input-buttons button {
   padding: 8px;
   border: 2px solid black;
@@ -112,10 +144,21 @@ body {
 }
 .input-buttons button:nth-child(2):hover,
 .input-buttons button:nth-child(2):focus,
-.read-button button:hover,
-.read-button button:focus,
 .add-book:hover {
   background-color: #34d399;
+}
+
+.read,
+.unread {
+  padding: 8px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.read {
+  background-color: #34d399;
+}
+.unread {
+  background-color: #ef4444;
 }
 
 .footer {
